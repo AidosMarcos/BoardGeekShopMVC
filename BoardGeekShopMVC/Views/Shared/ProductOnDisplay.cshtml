@@ -1,0 +1,45 @@
+﻿@model Product
+<!--
+<tr>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
+    <td>
+         <a asp-page="./Edit" asp-route-id="@Model.ProductID">Edit</a> |
+<a asp-page="./Details" asp-route-id="@Model.ProductID">Select</a>
+<a asp-page="./Delete" asp-route-id="@Model.ProductID">Delete</a>
+    </td>
+</tr>-->
+
+<div class="col-4">
+    <div class="col-12">
+        <img class="img-fluid" src="@Model.ImagePath" />
+    </div>
+    <div class="col-12">
+        <h4>@Model.Name</h4>
+    </div>
+    <div class="col-12">
+        <p>@Model.ShortDescription</p>
+    </div>
+    <div class="col-12">
+        <h5>@Model.Category.Name</h5>
+        <h5>@Model.Price</h5>
+    </div>
+    <div class="addToCart text-right">
+        <a class="btn btn-success" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productID="@Model.ProductID">
+            Add To Cart
+        </a>
+    </div>
+</div>

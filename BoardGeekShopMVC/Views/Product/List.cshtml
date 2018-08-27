@@ -1,0 +1,33 @@
+﻿
+<h2>Products</h2>
+<p>
+    <!-- <a asp-page="Create">Create New</a> -->
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Image
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Category
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Product product in Model.Products)
+        {
+            @Html.Partial("ProductSummary", product);
+        }
+    </tbody>
+</table>

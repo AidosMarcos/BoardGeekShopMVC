@@ -1,0 +1,57 @@
+﻿@model ShoppingCartViewModel
+
+<div class="row checkoutForm">
+    <p>
+        <h2>Your shopping cart</h2>
+    </p>
+    <hr />
+    <h4>Here are the products in your shopping cart.</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Selected amount</th>
+                <th>Product</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    <td class="text-center">@line.Quantity</td>
+                    <td class="text-left">@line.Product.Name</td>
+                    <td class="text-right">@line.Product.Price.ToString("c")</td>
+                    <td class="text-right">
+                        @((line.Quantity * line.Product.Price).ToString("c"))
+                    </td>
+                    <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-drinkId="@line.Product.ProductID"></a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
+                <td class="text-right">
+                    @Model.ShoppingCartTotal.ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-right">
+        <div class="btn-group ">
+            <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Check out</a>
+            <div class="dropdown">
+                <button class="btn btn-secundary dropdown-toggle" data-toggle="dropdown" id="dropdownmenu">
+                    Add more products<span class="caret"></span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownmenu">
+                    <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="Boardgame">Boardgame</a>
+                    <a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-category="Dice">Dice</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
